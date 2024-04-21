@@ -9,7 +9,7 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomescreenState();
 }
 
-class _HomescreenState extends State<HomeScreen> {
+class _HomescreenState extends State<HomeScreen> with TickerProviderStateMixin {
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
@@ -18,103 +18,109 @@ class _HomescreenState extends State<HomeScreen> {
     });
   }
 
+  late TabController _tabController = TabController(length: 4, vsync: this);
+
   static final List<Widget> _widgetOptions = <Widget>[
-    Expanded(
-      child: ListView.builder(
-          itemCount: 5,
-          itemBuilder: (BuildContext, int index) {
-            return Container(
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              decoration: const BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(
-                    color: Color(0xffBBC4CE),
+    ListView.builder(
+        itemCount: 5,
+        itemBuilder: (BuildContext, int index) {
+          return Container(
+            padding: const EdgeInsets.symmetric(vertical: 16),
+            decoration: const BoxDecoration(
+              border: Border(
+                bottom: BorderSide(
+                  color: Color(0xffBBC4CE),
+                ),
+              ),
+            ),
+            child: ListTile(
+              leading: Container(
+                width: 50,
+                height: 50,
+                alignment: Alignment.center,
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage("public/images/ListIcon.png"),
+                  ),
+                ),
+                child: Text(
+                  "${index + 1}",
+                  style: const TextStyle(
+                    fontFamily: "Poppins",
+                    fontSize: 14,
+                    color: Color(0xff240F4F),
                   ),
                 ),
               ),
-              child: ListTile(
-                leading: Container(
-                  width: 50,
-                  height: 50,
-                  alignment: Alignment.center,
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage("public/images/ListIcon.png"),
-                    ),
-                  ),
-                  child: Text(
-                    "${index + 1}",
-                    style: const TextStyle(
-                      fontFamily: "Poppins",
-                      fontSize: 14,
-                      color: Color(0xff240F4F),
-                    ),
-                  ),
-                ),
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          "Al-Fatihah",
-                          style: TextStyle(
-                            fontFamily: "Poppins",
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            color: Color(0xff240F4F),
-                          ),
-                        ),
-                        Row(
-                          children: [
-                            const Text(
-                              "MECCAN",
-                              style: TextStyle(
-                                fontFamily: "Poppins",
-                                fontSize: 12,
-                                color: Color(0xff8789A3),
-                              ),
-                            ),
-                            Container(
-                              margin: const EdgeInsets.symmetric(horizontal: 5),
-                              width: 5,
-                              height: 5,
-                              decoration: const BoxDecoration(
-                                  color: Color(0xff8789A3),
-                                  shape: BoxShape.circle),
-                            ),
-                            const Text(
-                              "7 VERSE",
-                              style: TextStyle(
-                                fontFamily: "Poppins",
-                                fontSize: 12,
-                                color: Color(0xff8789A3),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    Container(
-                      child: const Text(
-                        "ةحتافلا",
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        "Al-Fatihah",
                         style: TextStyle(
                           fontFamily: "Poppins",
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                          color: Color(0xff672CBC),
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                          color: Color(0xff240F4F),
                         ),
                       ),
-                    )
-                  ],
-                ),
+                      Row(
+                        children: [
+                          const Text(
+                            "MECCAN",
+                            style: TextStyle(
+                              fontFamily: "Poppins",
+                              fontSize: 12,
+                              color: Color(0xff8789A3),
+                            ),
+                          ),
+                          Container(
+                            margin: const EdgeInsets.symmetric(horizontal: 5),
+                            width: 5,
+                            height: 5,
+                            decoration: const BoxDecoration(
+                                color: Color(0xff8789A3),
+                                shape: BoxShape.circle),
+                          ),
+                          const Text(
+                            "7 VERSE",
+                            style: TextStyle(
+                              fontFamily: "Poppins",
+                              fontSize: 12,
+                              color: Color(0xff8789A3),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  Container(
+                    child: const Text(
+                      "ةحتافلا",
+                      style: TextStyle(
+                        fontFamily: "Poppins",
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                        color: Color(0xff672CBC),
+                      ),
+                    ),
+                  )
+                ],
               ),
-            );
-          }),
+            ),
+          );
+        }),
+    const Text(
+      'Para',
     ),
     const Text(
-      'Index 1: Business',
+      'Page',
+    ),
+    const Text(
+      'Hijb',
     ),
   ];
 
@@ -122,9 +128,126 @@ class _HomescreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        drawer: Drawer(
+          backgroundColor: Color(0xff672CBC),
+          child: Column(
+            children: [
+              DrawerHeader(
+                padding: EdgeInsets.only(bottom: 20),
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        width: 100,
+                        height: 100,
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle, color: Colors.black54),
+                        child: Icon(
+                          Ionicons.person,
+                          color: Colors.white,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                        "Halim Teguh Saputro",
+                        style: TextStyle(
+                            fontFamily: "Poppins",
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.white),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Expanded(
+                child: ListView(
+                  children: [
+                    ListTile(
+                      onTap: () {},
+                      contentPadding: EdgeInsets.symmetric(horizontal: 20),
+                      leading: Icon(
+                        Ionicons.person_outline,
+                        color: Colors.white,
+                      ),
+                      title: Text(
+                        "Account",
+                        style: TextStyle(
+                            fontFamily: "Poppins",
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.white),
+                      ),
+                    ),
+                    ListTile(
+                      onTap: () {},
+                      contentPadding: EdgeInsets.symmetric(horizontal: 20),
+                      leading: Icon(
+                        Ionicons.bookmark_outline,
+                        color: Colors.white,
+                      ),
+                      title: Text(
+                        "Bookmark",
+                        style: TextStyle(
+                            fontFamily: "Poppins",
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.white),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                width: 200,
+                child: Divider(),
+              ),
+              ListTile(
+                onTap: () {},
+                contentPadding: EdgeInsets.symmetric(horizontal: 20),
+                leading: Icon(
+                  Ionicons.settings_outline,
+                  color: Colors.white,
+                ),
+                title: Text(
+                  "Settings",
+                  style: TextStyle(
+                      fontFamily: "Poppins",
+                      fontSize: 14,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.white),
+                ),
+              ),
+              ListTile(
+                onTap: () {},
+                contentPadding: EdgeInsets.symmetric(horizontal: 20),
+                leading: Icon(
+                  Ionicons.log_out_outline,
+                  color: Colors.white,
+                ),
+                title: Text(
+                  "Log out",
+                  style: TextStyle(
+                      fontFamily: "Poppins",
+                      fontSize: 14,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.white),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              )
+            ],
+          ),
+        ),
         appBar: AppBar(
           backgroundColor: Colors.white,
-          leading: const Icon(Ionicons.reorder_two_outline),
           title: const Text(
             "Quran App",
             style: TextStyle(
@@ -254,58 +377,51 @@ class _HomescreenState extends State<HomeScreen> {
                   ],
                 ),
                 const SizedBox(
-                  height: 24,
+                  height: 14,
                 ),
                 Container(
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.2), // Warna shadow
-                        spreadRadius: -4, // Menyebar dari sumber cahaya
-                        blurRadius: 2,
-                        offset: const Offset(0, 5), // Posisi shadow
+                  child: TabBar(
+                    controller: _tabController,
+                    labelStyle: TextStyle(
+                        color: Color(0xff672CBC),
+                        fontFamily: "Poppins",
+                        fontWeight: FontWeight.w700,
+                        fontSize: 16),
+                    unselectedLabelStyle: TextStyle(
+                        color: Color(0xff8789A3),
+                        fontFamily: "Poppins",
+                        fontWeight: FontWeight.w500,
+                        fontSize: 16),
+                    indicator: BoxDecoration(
+                        border: Border(
+                            bottom: BorderSide(
+                                color: Color(0xff672CBC), width: 3))),
+                    tabs: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        child: Text("Surah"),
                       ),
-                    ],
-                  ),
-                  child: BottomNavigationBar(
-                    backgroundColor: Colors.white,
-                    selectedItemColor: const Color(0xff672CBC),
-                    onTap: _onItemTapped,
-                    currentIndex: _selectedIndex,
-                    elevation: 0,
-                    items: [
-                      BottomNavigationBarItem(
-                        icon: AnimatedContainer(
-                          duration: const Duration(milliseconds: 200),
-                          margin: const EdgeInsets.only(bottom: 5),
-                          height: 5,
-                          width: (_selectedIndex == 0) ? 100 : 0,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: const Color(0xff672CBC)),
-                        ),
-                        label: "Home",
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        child: Text("Para"),
                       ),
-                      BottomNavigationBarItem(
-                        icon: AnimatedContainer(
-                          curve: Curves.easeInOut,
-                          alignment: Alignment.centerLeft,
-                          duration: const Duration(milliseconds: 200),
-                          margin: const EdgeInsets.only(bottom: 5),
-                          height: 5,
-                          width: (_selectedIndex == 1) ? 100 : 0,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: const Color(0xff672CBC)),
-                        ),
-                        label: "Home",
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        child: Text("Page"),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        child: Text("Hijb"),
                       ),
                     ],
                   ),
                 ),
-                Container(
-                  child: _widgetOptions.elementAt(_selectedIndex),
-                )
+                Expanded(
+                  child: TabBarView(
+                    controller: _tabController,
+                    children: [..._widgetOptions],
+                  ),
+                ),
               ],
             ),
           ),
