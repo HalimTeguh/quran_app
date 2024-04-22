@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:quran_app/page/BookScreen.dart';
 import 'package:quran_app/page/HomeScreen.dart';
 
 class Navigation extends StatefulWidget {
@@ -20,15 +21,31 @@ class _NavigationState extends State<Navigation> {
 
   static const List<Widget> _widgetOptions = <Widget>[
     HomeScreen(),
-    Text(
-      'Index 1: Business',
-    ),
+    Bookscreen()
   ];
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            showDialog(context: (context), builder: (BuildContext context){
+                      return AlertDialog(
+                        title: Text("Add Content"),
+                        content: Text("Add your Content here!"),
+                        actions: [
+                          TextButton(onPressed: (){
+                            Navigator.of(context).pop();
+                          }, child: Text("Close"))
+                        ],
+                        
+                      );
+                    });
+          },
+          child: Icon(Ionicons.add),
+        ),
         bottomNavigationBar: Container(
           decoration: BoxDecoration(
             boxShadow: [
