@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:quran_app/page/AccountScreen.dart';
+import 'package:quran_app/page/SettingScreen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -364,7 +366,12 @@ class DrawerContent extends StatelessWidget {
           child: ListView(
             children: [
               ListTile(
-                onTap: () {},
+                onTap: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (BuildContext context) {
+                    return Accountscreen();
+                  }));
+                },
                 contentPadding: EdgeInsets.symmetric(horizontal: 20),
                 leading: Icon(
                   Ionicons.person_outline,
@@ -403,7 +410,12 @@ class DrawerContent extends StatelessWidget {
           child: Divider(),
         ),
         ListTile(
-          onTap: () {},
+          onTap: () {
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (BuildContext context) {
+              return Settingscreen();
+            }));
+          },
           contentPadding: EdgeInsets.symmetric(horizontal: 20),
           leading: Icon(
             Ionicons.settings_outline,
@@ -447,9 +459,10 @@ class DrawerContent extends StatelessWidget {
                         },
                         child: Text("No, I don't"),
                         style: ButtonStyle(
-                          backgroundColor: MaterialStatePropertyAll(Color(0xff672CBC)),
-                          foregroundColor: MaterialStatePropertyAll(Colors.white)
-                        ),
+                            backgroundColor:
+                                MaterialStatePropertyAll(Color(0xff672CBC)),
+                            foregroundColor:
+                                MaterialStatePropertyAll(Colors.white)),
                       ),
                     ],
                   );
