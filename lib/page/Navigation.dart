@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:quran_app/page/BookScreen.dart';
 import 'package:quran_app/page/HomeScreen.dart';
-
 class Navigation extends StatefulWidget {
   const Navigation({super.key});
 
@@ -21,7 +20,7 @@ class _NavigationState extends State<Navigation> {
 
   static const List<Widget> _widgetOptions = <Widget>[
     HomeScreen(),
-    Bookscreen()
+    Bookscreen(),
   ];
 
   @override
@@ -31,18 +30,21 @@ class _NavigationState extends State<Navigation> {
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            showDialog(context: (context), builder: (BuildContext context){
-                      return AlertDialog(
-                        title: Text("Add Content"),
-                        content: Text("Add your Content here!"),
-                        actions: [
-                          TextButton(onPressed: (){
+            showDialog(
+                context: (context),
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: Text("Add Content"),
+                    content: Text("Add your Content here!"),
+                    actions: [
+                      TextButton(
+                          onPressed: () {
                             Navigator.of(context).pop();
-                          }, child: Text("Close"))
-                        ],
-                        
-                      );
-                    });
+                          },
+                          child: Text("Close"))
+                    ],
+                  );
+                });
           },
           child: Icon(Ionicons.add),
         ),
@@ -65,9 +67,13 @@ class _NavigationState extends State<Navigation> {
             elevation: 0,
             items: [
               BottomNavigationBarItem(
-                  icon: Icon(Ionicons.home_outline), label: "Home"),
+                icon: Icon(Ionicons.home_outline),
+                label: "Home",
+              ),
               BottomNavigationBarItem(
-                  icon: Icon(Ionicons.bookmark_outline), label: "Bookmark"),
+                icon: Icon(Ionicons.bookmark_outline),
+                label: "Challenge",
+              ),
             ],
           ),
         ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:ionicons/ionicons.dart';
+import 'package:quran_app/page/HorizontalDrag.dart';
+import 'package:quran_app/page/PanDrag.dart';
+import 'package:quran_app/page/VerticalDrag.dart';
 
 class Bookscreen extends StatefulWidget {
   const Bookscreen({super.key});
@@ -18,52 +20,69 @@ class _BookscreenState extends State<Bookscreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              ElevatedButton(
-                  onPressed: () {},
-                  child: Row(
-                    children: [
-                      Icon(Icons.add),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text("Button"),
-                    ],
-                  )),
-              TextButton(onPressed: () {}, child: Text("Button")),
-              OutlinedButton(onPressed: () {}, child: Text("Button")),
-              IconButton(onPressed: () {}, icon: Icon(Icons.add)),
-              SizedBox(
-                height: 100,
-              ),
-              Container(
-                width: 100,
-                child: FloatingActionButton(
-                  backgroundColor: Color(0xff672CBC),
-                  foregroundColor: Colors.white,
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: TextButton(
                   onPressed: () {
-                    showDialog(context: (context), builder: (BuildContext context){
-                      return AlertDialog(
-                        title: Text("Add Content"),
-                        content: Text("Add your Content here!"),
-                        actions: [
-                          TextButton(onPressed: (){
-                            Navigator.of(context).pop();
-                          }, child: Text("Close"))
-                        ],
-                        
-                      );
-                    });
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (BuildContext context) {
+                          return Verticaldrag();
+                        },
+                      ),
+                    );
                   },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Ionicons.add),
-                      SizedBox(width: 5,),
-                      Text("Add", style: TextStyle(fontFamily: "Poppins", fontSize: 16),),
-                    ],
-                  ),
+                  style: ButtonStyle(
+                      padding: MaterialStatePropertyAll(
+                          EdgeInsets.symmetric(horizontal: 30, vertical: 15)),
+                      backgroundColor:
+                          MaterialStateProperty.all(Colors.deepPurpleAccent),
+                      foregroundColor: MaterialStateProperty.all(Colors.white)),
+                  child: Text("Vertical Drag"),
                 ),
-              )
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (BuildContext context) {
+                          return Horizontaldrag();
+                        },
+                      ),
+                    );
+                  },
+                  style: ButtonStyle(
+                      padding: MaterialStatePropertyAll(
+                          EdgeInsets.symmetric(horizontal: 30, vertical: 15)),
+                      backgroundColor:
+                          MaterialStateProperty.all(Colors.deepPurpleAccent),
+                      foregroundColor: MaterialStateProperty.all(Colors.white)),
+                  child: Text("Horizontal Drag"),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (BuildContext context) {
+                          return Pandrag();
+                        },
+                      ),
+                    );
+                  },
+                  style: ButtonStyle(
+                      padding: MaterialStatePropertyAll(
+                          EdgeInsets.symmetric(horizontal: 30, vertical: 15)),
+                      backgroundColor:
+                          MaterialStateProperty.all(Colors.deepPurpleAccent),
+                      foregroundColor: MaterialStateProperty.all(Colors.white)),
+                  child: Text("Pan Drag"),
+                ),
+              ),
             ],
           ),
         ),

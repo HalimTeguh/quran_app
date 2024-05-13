@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quran_app/page/Navigation.dart';
+import 'package:quran_app/page/SurahScreen.dart';
 import 'package:quran_app/page/splash.dart';
 
 void main() {
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const SplashScreen(),
         '/nav': (context) => const Navigation(),
+        '/detailSurah': (context) =>  Surahscreen(),
         // '/surah': (context) => const SurahScreen(),
       },
     );

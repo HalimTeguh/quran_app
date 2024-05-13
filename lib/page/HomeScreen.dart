@@ -25,7 +25,7 @@ class _HomescreenState extends State<HomeScreen> with TickerProviderStateMixin {
   static final List<Widget> _widgetOptions = <Widget>[
     ListView.builder(
         itemCount: 5,
-        itemBuilder: (BuildContext, int index) {
+        itemBuilder: (BuildContext context, int index) {
           return Container(
             padding: const EdgeInsets.symmetric(vertical: 16),
             decoration: const BoxDecoration(
@@ -36,6 +36,9 @@ class _HomescreenState extends State<HomeScreen> with TickerProviderStateMixin {
               ),
             ),
             child: ListTile(
+              onTap: (){
+                Navigator.pushNamed(context, '/detailSurah', arguments: index);
+              },
               leading: Container(
                 width: 50,
                 height: 50,
