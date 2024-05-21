@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quran_app/page/Challenge31.dart';
 import 'package:quran_app/page/Navigation.dart';
 import 'package:quran_app/page/SurahScreen.dart';
 import 'package:quran_app/page/splash.dart';

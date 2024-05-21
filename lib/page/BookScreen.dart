@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quran_app/page/AnimationImplisit.dart';
 import 'package:quran_app/page/Challenge29.dart';
+import 'package:quran_app/page/Challenge31.dart';
 import 'package:quran_app/page/HorizontalDrag.dart';
 import 'package:quran_app/page/PanDrag.dart';
 import 'package:quran_app/page/VerticalDrag.dart';
@@ -41,6 +42,10 @@ class _BookscreenState extends State<Bookscreen> {
               ButtonPage(
                 title: "Pertemuan 29: MiniChallenge",
                 page: Challenge29(),
+              ),
+              ButtonPage(
+                title: "Pertemuan 31: MiniChallenge",
+                page: Challenge31(),
               ),
             ],
           ),

@@ -61,7 +61,7 @@ class _Challenge29State extends State<Challenge29> {
                       _y = max(0, _y + verticalPosition);
                       _x = max(0, _x + horizontalPosition);
                     });
-                  },
+                    },
                   child: AnimatedContainer(
                     duration: Duration(milliseconds: 1000),
                     curve: Curves.bounceOut,
@@ -98,9 +98,6 @@ double randomMargin() {
   return Random().nextDouble() * 400;
 }
 
-int randomOpasity() {
-  return Random().nextInt(255);
-}
 
 Color randomColor() {
   return Color.fromARGB(
