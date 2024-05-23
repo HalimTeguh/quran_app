@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import '../components/input_text.dart';
 
-class Loginpage extends StatefulWidget {
-  const Loginpage({super.key});
+class Registrationpage extends StatefulWidget {
+  const Registrationpage({super.key});
 
   @override
-  State<Loginpage> createState() => _LoginpageState();
+  State<Registrationpage> createState() => _RegistrationpageState();
 }
 
-class _LoginpageState extends State<Loginpage> {
+class _RegistrationpageState extends State<Registrationpage> {
   double _topPositionImage = 0;
   double _opacityImage = 1;
   double _bottomPositionContainer = -1000;
 
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
+  TextEditingController _confirmPasswordController = TextEditingController();
 
   @override
   void initState() {
@@ -91,7 +91,7 @@ class _LoginpageState extends State<Loginpage> {
                       ),
                       // Login Text
                       Text(
-                        "Login",
+                        "Registration",
                         style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
@@ -123,6 +123,18 @@ class _LoginpageState extends State<Loginpage> {
                       ),
 
                       SizedBox(
+                        height: 20,
+                      ),
+
+                      // TextField Confirm Password
+                      InputText(
+                        controller: _confirmPasswordController,
+                        labelText: "Confirm Password",
+                        hintText: "confirm your password...",
+                        inputType: TextInputType.visiblePassword,
+                      ),
+
+                      SizedBox(
                         height: 30,
                       ),
 
@@ -144,7 +156,7 @@ class _LoginpageState extends State<Loginpage> {
                                       borderRadius:
                                           BorderRadius.circular(12)))),
                           child: Text(
-                            "Login",
+                            "Submit",
                             style: TextStyle(color: Colors.white, fontSize: 18),
                           ),
                         ),
@@ -159,15 +171,15 @@ class _LoginpageState extends State<Loginpage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Don't have an account? ",
+                            "Already have an account? ",
                             style: TextStyle(fontSize: 12),
                           ),
                           GestureDetector(
                             onTap: () {
-                              Navigator.of(context).pushNamed('/registration');
+                              Navigator.of(context).pushNamed('/login');
                             },
                             child: Text(
-                              "Register",
+                              "Login",
                               style: TextStyle(
                                 fontSize: 12,
                                 decoration: TextDecoration.underline,
@@ -235,7 +247,7 @@ class _LoginpageState extends State<Loginpage> {
 
                               // Text Login with Google
                               Text(
-                                "Sign in with Google",
+                                "Sign up with Google",
                                 style: TextStyle(
                                     color: Colors.black54, fontSize: 14),
                               ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quran_app/pages/HomeScreen.dart';
 import 'package:quran_app/pages/LoginPage.dart';
 import 'package:quran_app/pages/Navigation.dart';
+import 'package:quran_app/pages/RegistrationPage.dart';
 import 'package:quran_app/pages/SurahScreen.dart';
 import 'package:quran_app/pages/splash.dart';
 
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const SplashScreen(),
         '/login': (context) => const Loginpage(),
-        '/registrasi': (context) => const Loginpage(),
+        '/registration': (context) => const Registrationpage(),
 
 
 
