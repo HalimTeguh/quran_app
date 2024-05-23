@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:quran_app/page/BookScreen.dart';
-import 'package:quran_app/page/HomeScreen.dart';
+import 'package:quran_app/challenges/BookScreen.dart';
+import 'package:quran_app/pages/HomeScreen.dart';
 class Navigation extends StatefulWidget {
   const Navigation({super.key});
 

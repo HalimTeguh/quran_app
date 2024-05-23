@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:quran_app/page/AccountScreen.dart';
-import 'package:quran_app/page/SettingScreen.dart';
+import 'package:quran_app/challenges/AccountScreen.dart';
+import 'package:quran_app/pages/SettingScreen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

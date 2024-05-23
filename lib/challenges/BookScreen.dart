@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:quran_app/page/AnimationImplisit.dart';
-import 'package:quran_app/page/Challenge29.dart';
-import 'package:quran_app/page/Challenge31.dart';
-import 'package:quran_app/page/HorizontalDrag.dart';
-import 'package:quran_app/page/PanDrag.dart';
-import 'package:quran_app/page/VerticalDrag.dart';
+import 'package:quran_app/challenges/AnimationImplisit.dart';
+import 'package:quran_app/challenges/Challenge29.dart';
+import 'package:quran_app/challenges/Challenge31.dart';
+import 'package:quran_app/challenges/HorizontalDrag.dart';
+import 'package:quran_app/challenges/PanDrag.dart';
+import 'package:quran_app/challenges/VerticalDrag.dart';
 
 class Bookscreen extends StatefulWidget {
   const Bookscreen({super.key});
