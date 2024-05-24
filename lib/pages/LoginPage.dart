@@ -132,7 +132,7 @@ class _LoginpageState extends State<Loginpage> {
                         width: double.infinity,
                         child: TextButton(
                           onPressed: () {
-                            Navigator.of(context).popAndPushNamed('/nav');
+                            Navigator.of(context).pushReplacementNamed('/nav');
                           },
                           style: ButtonStyle(
                               backgroundColor: MaterialStatePropertyAll(

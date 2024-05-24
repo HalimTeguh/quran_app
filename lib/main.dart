@@ -4,6 +4,7 @@ import 'package:quran_app/pages/LoginPage.dart';
 import 'package:quran_app/pages/Navigation.dart';
 import 'package:quran_app/pages/RegistrationPage.dart';
 import 'package:quran_app/pages/SurahScreen.dart';
+import 'package:quran_app/pages/challenge_page.dart';
 import 'package:quran_app/pages/splash.dart';
 
 void main() {
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => const SplashScreen(),
         '/login': (context) => const Loginpage(),
         '/registration': (context) => const Registrationpage(),
-
+        '/challenge': (context) => ChallengePage(),
 
 
         '/nav': (context) => const Navigation(),
