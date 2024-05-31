@@ -7,11 +7,14 @@ class InputText extends StatefulWidget {
     required this.labelText,
     required this.hintText,
     this.inputType,
+    this.validator,
   });
 
   final TextEditingController controller;
   final String labelText;
   final String hintText;
+  final String? Function(String?)? validator;
+
   TextInputType? inputType;
 
   @override
@@ -35,9 +38,11 @@ class _InputTextState extends State<InputText> {
         (widget.inputType == TextInputType.visiblePassword) ? true : false;
 
     return TextFormField(
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       controller: widget.controller,
       keyboardType: TextInputType.visiblePassword,
       obscureText: _isPasswordType ? _isObscure : false,
+      validator: widget.validator,
       decoration: InputDecoration(
         suffixIcon: _isPasswordType
             ? IconButton(
@@ -58,6 +63,20 @@ class _InputTextState extends State<InputText> {
           color: Colors.black26,
         ),
         focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(
+            color: Colors.deepPurpleAccent,
+            width: 3,
+          ),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(
+            color: Colors.redAccent,
+            width: 3,
+          ),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide(
             color: Colors.deepPurpleAccent,

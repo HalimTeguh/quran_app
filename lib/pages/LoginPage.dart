@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -21,18 +22,25 @@ class _LoginpageState extends State<Loginpage> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(milliseconds: 500), () {
+    Future.delayed(Duration(milliseconds: 2000), () {
       setState(() {
         _topPositionImage = -300; // Ubah posisi gambar setelah delay
         _opacityImage = 0.8;
       });
     });
 
-    Future.delayed(Duration(milliseconds: 200), () {
+    Future.delayed(Duration(milliseconds: 1700), () {
       setState(() {
         _bottomPositionContainer = 0; // Ubah posisi gambar setelah delay
       });
     });
+  }
+
+  void signInEmailPassword() async {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: _emailController.text,
+      password: _passwordController.text,
+    );
   }
 
   @override
@@ -132,7 +140,8 @@ class _LoginpageState extends State<Loginpage> {
                         width: double.infinity,
                         child: TextButton(
                           onPressed: () {
-                            Navigator.of(context).pushReplacementNamed('/nav');
+                            signInEmailPassword();
+                            Navigator.of(context).pushNamed('/auth');
                           },
                           style: ButtonStyle(
                               backgroundColor: MaterialStatePropertyAll(
