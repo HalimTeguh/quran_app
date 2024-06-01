@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:quran_app/challenges/AccountScreen.dart';
+import 'package:quran_app/helper/auth_services.dart';
 import 'package:quran_app/pages/SettingScreen.dart';
 import 'package:quran_app/pages/bookmark_page.dart';
 import 'package:quran_app/pages/challenge_page.dart';
@@ -159,11 +160,7 @@ Drawer mainDrawer(BuildContext context) {
                     actions: [
                       OutlinedButton(
                         onPressed: () {
-                          
-
-
-
-
+                          AuthServices.signOut(context);
                         },
                         child: Text("Yes, I do"),
                       ),

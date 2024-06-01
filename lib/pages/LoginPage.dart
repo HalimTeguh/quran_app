@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import '../components/input_text.dart';
+import '../helper/auth_services.dart';
 
 class Loginpage extends StatefulWidget {
   const Loginpage({super.key});
@@ -15,6 +16,8 @@ class _LoginpageState extends State<Loginpage> {
   double _topPositionImage = 0;
   double _opacityImage = 1;
   double _bottomPositionContainer = -1000;
+
+  final _formKey = GlobalKey<FormState>();
 
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
@@ -90,115 +93,152 @@ class _LoginpageState extends State<Loginpage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        height: 20,
-                      ),
-                      // Login Text
-                      Text(
-                        "Login",
-                        style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.deepPurpleAccent,
+                  Form(
+                    key: _formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          height: 20,
                         ),
-                      ),
-
-                      SizedBox(
-                        height: 30,
-                      ),
-
-                      // TextField UserName
-                      InputText(
-                        controller: _emailController,
-                        labelText: "Email",
-                        hintText: "your email...",
-                      ),
-
-                      SizedBox(
-                        height: 20,
-                      ),
-
-                      // TextField Password
-                      InputText(
-                        controller: _passwordController,
-                        labelText: "Password",
-                        hintText: "your password...",
-                        inputType: TextInputType.visiblePassword,
-                      ),
-
-                      SizedBox(
-                        height: 30,
-                      ),
-
-                      // Button for Login
-                      Container(
-                        padding: EdgeInsets.symmetric(horizontal: 20),
-                        width: double.infinity,
-                        child: TextButton(
-                          onPressed: () {
-                            signInEmailPassword();
-                            Navigator.of(context).pushNamed('/auth');
+                        // Login Text
+                        Text(
+                          "Login",
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.deepPurpleAccent,
+                          ),
+                        ),
+                    
+                        SizedBox(
+                          height: 30,
+                        ),
+                    
+                        // TextField UserName
+                        InputText(
+                          controller: _emailController,
+                          labelText: "Email",
+                          hintText: "your email...",
+                          validator: (value) {
+                            // email cannot be null
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter your email';
+                            }
+                    
+                            // email must contain '@'
+                            if (!value.contains('@')) {
+                              return "Email must contain '@'";
+                            }
+                    
+                            return null;
                           },
-                          style: ButtonStyle(
-                              backgroundColor: MaterialStatePropertyAll(
-                                  Colors.deepPurpleAccent),
-                              overlayColor:
-                                  MaterialStatePropertyAll(Colors.white12),
-                              shape: MaterialStatePropertyAll(
-                                  RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(12)))),
-                          child: Text(
-                            "Login",
-                            style: TextStyle(color: Colors.white, fontSize: 18),
-                          ),
                         ),
-                      ),
+                    
+                        SizedBox(
+                          height: 20,
+                        ),
+                    
+                        // TextField Password
+                        InputText(
+                          controller: _passwordController,
+                          labelText: "Password",
+                          hintText: "your password...",
+                          inputType: TextInputType.visiblePassword,
+                          validator: (value) {
+                            // password cannot be null
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter your password';
+                            }
+                    
+                            if (value.length <= 4) {
+                              return 'Password must more than 4 Character';
+                            }
+                    
+                            return null;
+                          },
+                        ),
+                    
+                        SizedBox(
+                          height: 30,
+                        ),
+                    
+                        // Button for Login
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          width: double.infinity,
+                          child: TextButton(
+                            onPressed: () async {
 
-                      SizedBox(
-                        height: 20,
-                      ),
-
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Don't have an account? ",
-                            style: TextStyle(fontSize: 12),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.of(context).pushNamed('/registration');
+                              if (_formKey.currentState!.validate()) {
+                                    _formKey.currentState!.save();
+                                    await AuthServices.signInWithEmailAndPassword(
+                                      context,
+                                      _emailController.text,
+                                      _passwordController.text,
+                                    );
+                                  }
+                              
                             },
+                            style: ButtonStyle(
+                                backgroundColor: MaterialStatePropertyAll(
+                                    Colors.deepPurpleAccent),
+                                overlayColor:
+                                    MaterialStatePropertyAll(Colors.white12),
+                                shape: MaterialStatePropertyAll(
+                                    RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(12)))),
                             child: Text(
-                              "Register",
-                              style: TextStyle(
-                                fontSize: 12,
-                                decoration: TextDecoration.underline,
-                                shadows: [
-                                  Shadow(
-                                      offset: Offset(0, -2),
-                                      color: Colors.deepPurpleAccent)
-                                ],
-                                decorationThickness: 2,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.transparent,
-                              ),
+                              "Login",
+                              style: TextStyle(color: Colors.white, fontSize: 18),
                             ),
                           ),
-                        ],
-                      ),
-                      // Button for Signup
-
-                      SizedBox(
-                        height: 10,
-                      ),
-                    ],
+                        ),
+                    
+                        SizedBox(
+                          height: 20,
+                        ),
+                    
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Don't have an account? ",
+                              style: TextStyle(fontSize: 12),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.of(context)
+                                    .pushReplacementNamed('/registration');
+                              },
+                              child: Text(
+                                "Register",
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  decoration: TextDecoration.underline,
+                                  shadows: [
+                                    Shadow(
+                                        offset: Offset(0, -2),
+                                        color: Colors.deepPurpleAccent)
+                                  ],
+                                  decorationThickness: 2,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.transparent,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        // Button for Signup
+                    
+                        SizedBox(
+                          height: 10,
+                        ),
+                      ],
+                    ),
                   ),
                   // Divider and Sign in with Google
 
